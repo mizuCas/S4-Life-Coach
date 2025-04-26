@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Life Coach AI 网站
 
 这是一个基于火山方舟 DeepSeek R1 API 的 Life Coach 网站，通过 AI 对话为用户提供个人成长建议。
@@ -14,3 +15,7 @@
 - 个性化建议
 - 流式输出响应
 - 优雅的用户界面
+=======
+# S4-Life-Coach
+基于DeepSeek R1 API开发的AI Life Coach网站
+>>>>>>> 5416c02d77875cbc72fdb87416a0d7eedf42f3da
