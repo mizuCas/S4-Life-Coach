@@ -84,3 +84,41 @@ header h1 {
 #send-btn:hover {
     background: #1976d2;
 }
+
+.mood-indicator {
+    font-size: 0.8em;
+    padding: 4px 8px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    color: white;
+}
+
+.mood-indicator.happy {
+    background-color: #4CAF50;
+}
+
+.mood-indicator.sad {
+    background-color: #2196F3;
+}
+
+.mood-indicator.angry {
+    background-color: #F44336;
+}
+
+.mood-indicator.neutral {
+    background-color: #9E9E9E;
+}
+
+.mood-indicator.excited {
+    background-color: #FF9800;
+}
+
+.analysis-summary {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #2196f3;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #666;
+}

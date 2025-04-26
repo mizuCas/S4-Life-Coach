@@ -8,10 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
         content: "你是一位专业的Life Coach，你的目标是通过对话帮助用户实现个人成长。请以温暖、专业的态度与用户交流，提供有建设性的建议。"
     }];
 
-    function addMessage(content, isUser) {
+    function addMessage(content, isUser, mood = null) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
-        messageDiv.textContent = content;
+        
+        // 添加心情指示器
+        if (mood && !isUser) {
+            const moodIndicator = document.createElement('div');
+            moodIndicator.className = `mood-indicator ${mood}`;
+            moodIndicator.textContent = `当前心情: ${mood}`;
+            messageDiv.appendChild(moodIndicator);
+        }
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = content;
+        messageDiv.appendChild(contentDiv);
+        
         chatMessages.appendChild(messageDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
@@ -37,22 +50,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    messages: conversationHistory
+                    messages: conversationHistory,
+                    sessionId: 'default'
                 })
             });
 
             const data = await response.json();
             
-            // Add error checking for the response data
             if (!data || !data.choices || !data.choices[0] || !data.choices[0].message) {
                 throw new Error('Invalid response format from server');
             }
             
-            // 添加AI回复
             const aiResponse = data.choices[0].message.content;
-            addMessage(aiResponse, false);
+            addMessage(aiResponse, false, data.mood);
             
-            // 更新对话历史
+            // 显示分析结果
+            if (data.analysis && data.analysis.content) {
+                const analysisDiv = document.createElement('div');
+                analysisDiv.className = 'analysis-summary';
+                analysisDiv.textContent = `对话分析：${data.analysis.content}`;
+                chatMessages.appendChild(analysisDiv);
+            }
+            
             conversationHistory.push({
                 role: "assistant",
                 content: aiResponse
