@@ -18,4 +18,3 @@
 =======
 # S4-Life-Coach
 基于DeepSeek R1 API开发的AI Life Coach网站
->>>>>>> 5416c02d77875cbc72fdb87416a0d7eedf42f3da
