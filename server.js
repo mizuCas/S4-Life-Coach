@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+require('dotenv').config();  // 添加这行来加载环境变量
 const app = express();
 
 // 中间件配置
@@ -8,9 +9,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// API 配置
-const API_KEY = '3e8d0f49-40ed-49de-839b-7af4a0f0ff24';
-const API_URL = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions';
+// API 配置 - 使用环境变量
+const API_KEY = process.env.VOLC_API_KEY;
+const API_URL = process.env.VOLC_API_URL;
 
 // 处理聊天请求
 app.post('/chat', async (req, res) => {
